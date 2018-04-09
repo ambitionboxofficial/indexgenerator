@@ -1,0 +1,2 @@
+# getghostblogindex.github.io
+## hello
