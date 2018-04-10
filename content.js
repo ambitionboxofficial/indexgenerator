@@ -24,7 +24,7 @@ function createTocMarkup(headers) {
           counter[currLevel] = 1;
         }
         tabs = "&#09;".repeat(currLevel);
-        output += `${tabs}${counter[currLevel]}. [${h.innerText}]("#${h.id}")<br/>`;   
+        output += `${tabs}${counter[currLevel]}. [${h.innerText}](#${h.id})<br/>`;   
         counter[currLevel]++;
         prevLevel = currLevel;       
     });
@@ -71,7 +71,8 @@ function createHtmlIndex(headers){
   return output;
 }
 // makes the innet html of unwanted doms as empty string
-function getMainDom(doc){
+function getMainDom(docOrign){
+  var doc = docOrign.cloneNode(true);
   var unwantedTags = ["aside","footer","header"];
   for (var i = unwantedTags.length - 1; i >= 0; i--) {
     try {
