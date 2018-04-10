@@ -10,7 +10,7 @@
    "default_popup": "popup.html"
   },
   "content_scripts": [ {
-      "matches": [ "http://*/*", "https://*/*"],
+      "matches": [ "http://localhost:2368/*", "https://blog.ambitionbox.com/*"],
       "js": ["jquery.min.js","content.js"]
   } ],
   "permissions": [

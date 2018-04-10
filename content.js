@@ -70,15 +70,26 @@ function createHtmlIndex(headers){
 
   return output;
 }
+// makes the innet html of unwanted doms as empty string
+function getMainDom(doc){
+  var unwantedTags = ["aside","footer","header"];
+  for (var i = unwantedTags.length - 1; i >= 0; i--) {
+    try {
+      var elements = doc.getElementsByTagName(unwantedTags[i]);
+      for (var i = elements.length - 1; i >= 0; i--) {
+        elements[i].innerHTML = '';
+      }
+    }
+    catch(e){
+    }
+  }
+  return doc;
+}
 
 function getTocMarkup(document,markdown = false) {
-    // I was only interested in the headers within the element that had the .post-content class,
-    // which is specific to the Ghost blog. If you're using this elsewhere, or are interested in
-    // the entire document, delete this line and use document.querySelectorAll(...) on the next line.
-    //var body = document.getElementById("content");
-    
+    body = getMainDom(document);
     // Add or remove header tags you do (or don't) want to include in the TOC
-    var headers = document.querySelectorAll('h2, h3');
+    var headers = body.querySelectorAll('h2, h3');
 
     // Change the number to 1 if you want headers no matter what.
     // Or if you want at least 3 headers before generating a TOC, change it to 3.
